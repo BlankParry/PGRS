@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+
+{% block title %}Create Account{% endblock %}
+
+{% block extra_css %}
+<style>
+    .register-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--dark-gradient);
+        padding: 2rem;
+        position: relative;
+    }
+
+    .register-card {
+        width: 100%;
+        max-width: 500px;
+        background: rgba(20, 30, 48, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 198, 255, 0.2);
+        border-radius: 20px;
+        padding: 3rem;
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    }
+
+    .register-title {
+        font-size: 2.5rem;
+        color: #00c6ff;
+        text-align: center;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .register-subtitle {
+        color: rgba(255, 255, 255, 0.7);
+        text-align: center;
+        margin-bottom: 2.5rem;
+        font-size: 1.1rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 1rem 1.2rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(0, 198, 255, 0.2);
+        border-radius: 12px;
+        color: #fff;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #00c6ff;
+        box-shadow: 0 0 20px rgba(0, 198, 255, 0.2);
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    select.form-control {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1em;
+        padding-right: 2.5rem;
+    }
+
+    select.form-control option {
+        background: rgba(20, 30, 48, 0.95);
+        color: #fff;
+        padding: 0.5rem;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(135deg, #00c6ff, #0072ff);
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-size: 1.1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 2rem;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(0, 198, 255, 0.4);
+    }
+
+    .login-link {
+        text-align: center;
+        margin-top: 2rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .login-link a {
+        color: #00c6ff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .login-link a:hover {
+        text-shadow: 0 0 10px rgba(0, 198, 255, 0.5);
+    }
+
+    .back-btn {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        padding: 0.8rem 1.5rem;
+        background: rgba(0, 198, 255, 0.1);
+        border: 1px solid rgba(0, 198, 255, 0.3);
+        border-radius: 12px;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        z-index: 10;
+        font-weight: 500;
+    }
+
+    .back-btn:hover {
+        background: rgba(0, 198, 255, 0.2);
+        transform: translateX(-5px);
+    }
+
+    .error-message {
+        background: rgba(255, 59, 48, 0.1);
+        border: 1px solid rgba(255, 59, 48, 0.3);
+        color: #ff3b30;
+        padding: 1rem;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    @media (max-width: 768px) {
+        .register-container {
+            padding: 1rem;
+        }
+
+        .register-card {
+            padding: 2rem;
+        }
+
+        .register-title {
+            font-size: 2rem;
+        }
+
+        .back-btn {
+            top: 1rem;
+            left: 1rem;
+            padding: 0.6rem 1rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="register-container">
+    <a href="{{ url_for('home') }}" class="back-btn">← Back to Home</a>
+    
+    <div class="register-card">
+        <h1 class="register-title">Create Account</h1>
+        <p class="register-subtitle">Join our community and start filing complaints</p>
+
+        <form method="POST" action="{{ url_for('citizen_register') }}">
+            <div class="form-group">
+                <input type="text" 
+                       class="form-control" 
+                       id="name" 
+                       name="name" 
+                       placeholder="Full Name" 
+                       required>
+            </div>
+
+            <div class="form-group">
+                <input type="email" 
+                       class="form-control" 
+                       id="email" 
+                       name="email" 
+                       placeholder="Email Address" 
+                       required>
+            </div>
+
+            <div class="form-group">
+                <input type="text" 
+                       class="form-control" 
+                       id="contact_number" 
+                       name="contact_number" 
+                       placeholder="Contact Number" 
+                       required>
+            </div>
+
+            <div class="form-group">
+                <input type="text" 
+                       class="form-control" 
+                       id="address" 
+                       name="address" 
+                       placeholder="Address" 
+                       required>
+            </div>
+
+            {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <button type="submit" class="submit-btn">Register</button>
+        </form>
+
+        <div class="login-link">
+            <p>Already have an account? <a href="{{ url_for('citizen_login') }}">Login here</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %} 

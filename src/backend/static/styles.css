@@ -1,0 +1,148 @@
+:root {
+    --primary-gradient: linear-gradient(135deg, #00c6ff, #0072ff);
+    --secondary-gradient: linear-gradient(135deg, #4facfe, #00f2fe);
+    --accent-gradient: linear-gradient(135deg, #21d4fd, #b721ff);
+    --dark-gradient: linear-gradient(135deg, #141e30, #243b55);
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+    --box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    --neon-shadow: 0 0 10px rgba(0, 198, 255, 0.5),
+                   0 0 20px rgba(0, 198, 255, 0.3),
+                   0 0 30px rgba(0, 198, 255, 0.1);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--dark-gradient);
+    min-height: 100vh;
+    color: #fff;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Glass Card */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: var(--glass-border);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--neon-shadow);
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #00c6ff;
+    box-shadow: 0 0 15px rgba(0, 198, 255, 0.2);
+}
+
+.form-label {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    padding: 0 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.form-control:focus ~ .form-label,
+.form-control:not(:placeholder-shown) ~ .form-label {
+    top: -0.5rem;
+    left: 0.8rem;
+    font-size: 0.8rem;
+    color: #00c6ff;
+    background: rgba(20, 30, 48, 0.95);
+}
+
+/* Buttons */
+.btn {
+    padding: 0.8rem 1.5rem;
+    background: var(--primary-gradient);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--neon-shadow);
+}
+
+/* Status Colors */
+.status-pending { background: linear-gradient(135deg, #ffd700, #ffaa00); }
+.status-in-progress { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.status-resolved { background: linear-gradient(135deg, #00b09b, #96c93d); }
+.status-not-resolved { background: linear-gradient(135deg, #ff416c, #ff4b2b); }
+
+/* Navigation */
+.nav-links {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #00c6ff;
+    font-weight: bold;
+    margin: 0 1rem;
+}
+
+.nav-links a:hover {
+    text-shadow: var(--neon-shadow);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .glass-card {
+        padding: 1.5rem;
+    }
+    
+    .form-control {
+        font-size: 16px;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
